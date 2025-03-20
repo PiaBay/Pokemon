@@ -3,9 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Pokémon Cards</title>
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/styleOverlay.css">
+    <link rel="stylesheet" href="./styles/styleSearch.css">
+    <script src="./javascript/script.js" defer></script>
+    <script src="./javascript/renderPokemon.js"></script>
+    <script src="./javascript/openModal.js" defer></script>
+    <script src="./javascript/searchCard.js"></script>
 </head>
-<body>
-    
+<body onload="fetchPokemons(initialLoad)">
+    <header class="header">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pokémon_logo.svg" alt="Pokémon Logo">
+        <h1>Pokédex</h1>
+        
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search Pokémon..." oninput="validateSearch()">
+            <p id="searchWarning" style="display: none; color: red;">Mindestens 3 Buchstaben eingeben!</p>
+            <div id="suggestions" class="suggestions-box"></div>
+            <button id="searchButton" onclick="searchPokemon()" disabled>Search</button>
+        </div>
+    </header>
+    <div class="card-container" id="cardContainer"></div>
+    <button class="load-more" id="loadMoreButton" onclick="loadMorePokemons()">Load More</button>
+    <div class="loading-screen" id="loadingScreen">Loading Pokémon...</div>
+    <button id="closeSearchButton" onclick="resetToHome()" style="display: none;">Close Search</button>
+
+        <!-- 🔹 Overlay für Pokémon-Details -->
+        <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
+            <div class="modal" onclick="event.stopPropagation()">
+                <h2 id="modalTitle"></h2>
+                <img id="modalImage" src="" alt="">
+                <button id="prevPokemon" class="modal-arrow left" onclick="navigateModal(-1)">&#8592;</button>
+                <button id="nextPokemon" class="modal-arrow right" onclick="navigateModal(1)">&#8594;</button>
+                <p id="modalId"></p>
+                <div id="modalDetails"></div>
+                <button onclick="closeModal()">Close</button>
+            </div>
+        </div>
+        
 </body>
 </html>
+
