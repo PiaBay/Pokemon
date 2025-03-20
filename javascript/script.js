@@ -4,7 +4,6 @@ const loadMoreCount = 20;
 let loadedPokemons = []; // Speichert alle geladenen Pokémon
 let currentPokemonIndex = 0; // Speichert das aktuell angezeigte Pokémon im Modal
 
-// Farben für Pokémon-Typen
 const typeColors = {
     normal: "#A8A878", fire: "#F08030", water: "#6890F0", electric: "#F8D030",
     grass: "#78C850", ice: "#98D8D8", fighting: "#C03028", poison: "#A040A0",
@@ -32,27 +31,14 @@ async function fetchAdditionalPokemons(count) {
 
 function loadMorePokemons() {
     const loadMoreButton = document.getElementById("loadMoreButton");
-    const loadingScreen = document.getElementById("loadingScreen");
-    if (!loadMoreButton || !loadingScreen) {
-        console.error("FEHLER: loadMoreButton oder loadingScreen wurde nicht gefunden!");
-        return;
-    }
+    const loadingScreen = document.getElementById("loadMoreButton");
     loadMoreButton.disabled = true; 
     loadingScreen.style.display = "flex"; 
     fetchAdditionalPokemons(loadMoreCount).then(() => {
-        loadMoreButton.disabled = false; // Button wieder aktivieren
-        loadingScreen.style.display = "none"; // Ladeanimation ausblenden
+        loadMoreButton.disabled = false; 
+        loadingScreen.style.display = "none"; 
         if (loadedPokemons.length >= initialLoad + loadMoreCount) {
             loadMoreButton.style.display = "none";
         }
     });
 }
-
-
-
-
-
-
-
-
-

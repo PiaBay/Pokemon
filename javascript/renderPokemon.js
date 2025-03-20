@@ -24,7 +24,7 @@ function renderPokemonCard(pokemon) {
     const typeButtons = pokemon.types.map(typeInfo => {
         return `<button class="type-button" style="background-color: ${typeColors[typeInfo.type.name] || '#A8A878'}">${typeInfo.type.name.toUpperCase()}</button>`;
     }).join(" ");
-    card.innerHTML = `<div>
+    card.innerHTML += `<div>
                 <h3>${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h3>
                 <img src="${imageUrl}" alt="${pokemon.name}">
                 <p>ID: ${pokemon.id}</p>

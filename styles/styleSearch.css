@@ -21,7 +21,6 @@
     background: #f0f0f0;
 }
 
-/* Such-Button */
 .search-container button {
     padding: 8px 12px;
     font-size: 16px;
@@ -41,7 +40,7 @@
     background-color: #cccccc;
     cursor: not-allowed;
 }
-/* Suchfeld */
+
 .search-container input {
     padding: 8px 12px;
     font-size: 16px;
@@ -51,7 +50,6 @@
     width: 180px;
 }
 
-/* Suchfeld Container */
 .search-container {
     display: flex;
     align-items: center;
