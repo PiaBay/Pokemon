@@ -31,12 +31,24 @@ async function fetchAdditionalPokemons(count) {
 
 function loadMorePokemons() {
     const loadMoreButton = document.getElementById("loadMoreButton");
-    const loadingScreen = document.getElementById("loadMoreButton");
-    loadMoreButton.disabled = true; 
-    loadingScreen.style.display = "flex"; 
-    fetchAdditionalPokemons(loadMoreCount).then(() => {
-        loadMoreButton.disabled = false; 
-        loadingScreen.style.display = "none"; 
+    const loadingScreen = document.getElementById("loadingScreen");
+    if (!loadMoreButton || !loadingScreen) {
+        console.error("FEHLER: loadMoreButton oder loadingScreen wurde nicht gefunden!");
+        return;
+    }
+    loadMoreButton.disabled = true;
+    loadingScreen.style.display = "flex";
+    new Promise((resolve) => {
+        setTimeout(() => {
+            fetchAdditionalPokemons(loadMoreCount).then(() => {
+                resolve();
+            });
+        }, 6000);
+    }).then(() => {
+        setTimeout(() => {
+            loadMoreButton.disabled = false;
+            loadingScreen.style.display = "none";
+        }, 2000); 
         if (loadedPokemons.length >= initialLoad + loadMoreCount) {
             loadMoreButton.style.display = "none";
         }

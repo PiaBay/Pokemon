@@ -12,6 +12,7 @@ function openPokemonModal(pokemonId) {
     currentPokemonIndex = loadedPokemons.findIndex(p => p.id === pokemon.id);
     updateModal(pokemon);
     modal.style.display = "flex";
+    document.body.classList.add("modal-open");
 }
 
 function updateModal(pokemon) {
@@ -50,4 +51,5 @@ document.addEventListener("keydown", (event) => {
 
 function closeModal() {
     document.getElementById("modalOverlay").style.display = "none";
+    document.body.classList.remove("modal-open");
 }

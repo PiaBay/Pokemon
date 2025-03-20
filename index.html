@@ -26,8 +26,8 @@
     </header>
     <div class="card-container" id="cardContainer"></div>
     <button class="load-more" id="loadMoreButton" onclick="loadMorePokemons()">Load More</button>
-    <button id="closeSearchButton" onclick="resetToHome()" style="display: none;">Close Search</button>
 
+    <button id="closeSearchButton" onclick="resetToHome()" style="display: none;">Close Search</button>
         <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
             <div class="modal" onclick="event.stopPropagation()">
                 <h2 id="modalTitle"></h2>
@@ -39,7 +39,12 @@
                 <button onclick="closeModal()">Close</button>
             </div>
         </div>
-        
+        <div id="loadingScreen" class="loading-screen">
+            <div class="loading-content">
+                <div class="spinner"></div>
+                <p>Loading Pokémon...</p>
+            </div>
+        </div>
 </body>
 </html>
 
