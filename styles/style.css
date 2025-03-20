@@ -43,55 +43,25 @@ body {
     cursor: pointer;
 }
 
-/* Suchfeld Container */
-.search-container {
+
+
+
+
+.type-buttons {
     display: flex;
-    align-items: center;
-    gap: 8px;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 8px;
+    background-color: bisque;
 }
 
-/* Suchfeld */
-.search-container input {
-    padding: 8px 12px;
-    font-size: 16px;
-    border: 1px solid #000;
-    border-radius: 5px;
-    outline: none;
-    width: 180px;
-}
-
-/* Such-Button */
-.search-container button {
-    padding: 8px 12px;
-    font-size: 16px;
+.type-button {
     border: none;
-    background-color: #ff5733;
+    padding: 5px 10px;
     color: white;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-.search-container button:hover {
-    background-color: #e74c3c;
-}
-
-.search-container button:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .header {
-        flex-direction: column;
-        text-align: center;
-        gap: 10px;
-    }
-
-    .search-container input {
-        width: 150px;
-    }
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 35px;
 }
 
 /* Karten-Container */
@@ -160,3 +130,15 @@ button {
     background-color: #e74c3c;
 }
 
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .search-container input {
+        width: 150px;
+    }
+}

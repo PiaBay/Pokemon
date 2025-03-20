@@ -1,47 +1,48 @@
 function validateSearch() {
     const searchInput = document.getElementById("searchInput");
     const searchWarning = document.getElementById("searchWarning");
+    const closeSearchButton = document.getElementById("closeSearchButton");
+    const loadMoreButton = document.getElementById("loadMoreButton");
     const query = searchInput.value.trim().toLowerCase();
     document.getElementById("searchButton").disabled = query.length < 3;
-    
-    // Zeige Warnung an, wenn weniger als 3 Zeichen eingegeben wurden
     if (query.length < 3) {
         searchWarning.style.display = "block";
+        closeSearchButton.style.display = "none";
+        loadMoreButton.style.display = "block";
     } else {
         searchWarning.style.display = "none";
-        filterPokemonList(query); // Filtert die Pokémon-Liste
+        closeSearchButton.style.display = "block";
+        loadMoreButton.style.display = "none";
+        filterPokemonImages(query);
     }
 }
 
-async function filterPokemonList(query) {
+
+async function filterPokemonImages(query) {
     const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=1000"); // Holt alle Pokémon-Namen
     const data = await response.json();
     const allPokemons = data.results;
     
     const filteredPokemons = allPokemons.filter(pokemon => pokemon.name.includes(query));
     
-    displayFilteredPokemons(filteredPokemons);
+    displayFilteredPokemonImages(filteredPokemons);
 }
 
-function displayFilteredPokemons(pokemons) {
-    const suggestionsContainer = document.getElementById("suggestions");
-    suggestionsContainer.innerHTML = "";
-    
+
+async function displayFilteredPokemonImages(pokemons) {
+    const cardContainer = document.getElementById("cardContainer");
+    cardContainer.innerHTML = ""; // Entfernt alte Pokémon
     if (pokemons.length === 0) return;
-    
-    pokemons.slice(0, 10).forEach(pokemon => {
-        const div = document.createElement("div");
-        div.textContent = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
-        div.classList.add("suggestion-item");
-        div.onclick = () => {
-            document.getElementById("searchInput").value = pokemon.name;
-            suggestionsContainer.innerHTML = "";
-            searchPokemon();
-        };
-        suggestionsContainer.appendChild(div);
-    });
+    for (const pokemon of pokemons.slice(0, 10)) { // Maximal 10 Pokémon anzeigen
+        try {
+            let response = await fetch(pokemon.url);
+            let data = await response.json();
+            renderPokemonCard(data);
+        } catch (error) {
+            console.error("Fehler beim Laden der Pokémon-Daten:", error);
+        }
+    }
 }
-
 
 
 function toggleSearchUI(isSearching) {

@@ -13,40 +13,9 @@ const typeColors = {
     steel: "#B8B8D0", fairy: "#EE99AC"
 };
 
-async function fetchPokemons(limit) {
-    document.getElementById("cardContainer").innerHTML = "";
-    for (let i = 0; i < limit; i++) {
-        try {
-            let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${currentIndex}`);
-            let data = await response.json();
-            loadedPokemons.push(data);
-            renderPokemonCard(data);
-            currentIndex++;
-        } catch (error) {
-            console.error("Error fetching Pokémon:", error);
-        }
-    }
-}
-
-function renderPokemonCard(pokemon) {
-    const cardContainer = document.getElementById("cardContainer");
-    const card = document.createElement("div");
-    card.classList.add("card");
-    const primaryType = pokemon.types[0].type.name;
-    card.style.backgroundColor = typeColors[primaryType] || "#A8A878";
-    const imageUrl = pokemon.sprites.other["official-artwork"].front_default || pokemon.sprites.front_default;
-    card.innerHTML  = `<div>
-                <h3>${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h3>
-                <img src="${imageUrl}" alt="${pokemon.name}">
-                <p>ID: ${pokemon.id}</p>
-                </div>
-                `;
-    card.onclick = () => openPokemonModal(pokemon.id);
-    cardContainer.appendChild(card);
-}
-
 
 async function fetchAdditionalPokemons(count) {
+    const cardContainer = document.getElementById("cardContainer");
     for (let i = 0; i < count; i++) {
         try {
             let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${currentIndex}`);
@@ -55,20 +24,21 @@ async function fetchAdditionalPokemons(count) {
             renderPokemonCard(data);
             currentIndex++;
         } catch (error) {
-            console.error("❌ Fehler beim Laden von Pokémon:", error);
+            console.error("Fehler beim Laden von Pokémon:", error);
         }
     }
 }
+
 
 function loadMorePokemons() {
     const loadMoreButton = document.getElementById("loadMoreButton");
     const loadingScreen = document.getElementById("loadingScreen");
     if (!loadMoreButton || !loadingScreen) {
-        console.error("❌ FEHLER: loadMoreButton oder loadingScreen wurde nicht gefunden!");
+        console.error("FEHLER: loadMoreButton oder loadingScreen wurde nicht gefunden!");
         return;
     }
-    loadMoreButton.disabled = true; // Button deaktivieren
-    loadingScreen.style.display = "flex"; // Ladeanimation anzeigen
+    loadMoreButton.disabled = true; 
+    loadingScreen.style.display = "flex"; 
     fetchAdditionalPokemons(loadMoreCount).then(() => {
         loadMoreButton.disabled = false; // Button wieder aktivieren
         loadingScreen.style.display = "none"; // Ladeanimation ausblenden
