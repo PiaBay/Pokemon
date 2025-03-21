@@ -13,6 +13,7 @@
     <script src="./javascript/searchCard.js"></script>
 </head>
 <body onload="fetchPokemons(initialLoad)">
+    <div class="main-section"></div>
     <header class="header">
         <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pokémon_logo.svg" alt="Pokémon Logo">
         <h1>Pokédex</h1>
@@ -23,7 +24,7 @@
             <button id="searchButton" onclick="searchPokemon()" disabled>Search</button>
         </div>
     </header>
-    <div class="main-section">
+    
     <div class="card-container" id="cardContainer"></div>
         <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
             <div class="modal" onclick="event.stopPropagation()">

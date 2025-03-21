@@ -8,6 +8,7 @@ html,body {
     width: 100%;
     max-width: 1900px;
     overflow-x: hidden;
+    margin: auto;
 }
 
 body {
