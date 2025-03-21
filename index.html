@@ -16,7 +16,6 @@
     <header class="header">
         <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pokémon_logo.svg" alt="Pokémon Logo">
         <h1>Pokédex</h1>
-        
         <div class="search-container">
             <input type="text" id="searchInput" placeholder="Search Pokémon..." oninput="validateSearch()">
             <p id="searchWarning" class="search-warning">Mindestens 3 Buchstaben eingeben!</p>
@@ -24,10 +23,8 @@
             <button id="searchButton" onclick="searchPokemon()" disabled>Search</button>
         </div>
     </header>
+    <div class="main-section">
     <div class="card-container" id="cardContainer"></div>
-    <button class="load-more" id="loadMoreButton" onclick="loadMorePokemons()">Load More</button>
-
-    <button id="closeSearchButton" onclick="resetToHome()" style="display: none;">Close Search</button>
         <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
             <div class="modal" onclick="event.stopPropagation()">
                 <h2 id="modalTitle"></h2>
@@ -39,12 +36,18 @@
                 <button onclick="closeModal()">Close</button>
             </div>
         </div>
-        <div id="loadingScreen" class="loading-screen">
-            <div class="loading-content">
-                <div class="spinner"></div>
-                <p>Loading Pokémon...</p>
-            </div>
-        </div>
+            <div class="button-section">
+                    <button class="load-more" id="loadMoreButton" onclick="loadMorePokemons()">Load More</button>
+                    <button id="closeSearchButton" style="display: none;" onclick="resetToHome()">Close Search</button>
+            </div>  
+    </div>  
+<div id="loadingScreen" class="loading-screen">
+    <div class="loading-content">
+        <div class="spinner"></div>
+        <p>Loading Pokémon...</p>
+    </div>
+</div>
+
 </body>
 </html>
 

@@ -15,6 +15,7 @@ function openPokemonModal(pokemonId) {
     document.body.classList.add("modal-open");
 }
 
+
 function updateModal(pokemon) {
     if (!pokemon || !pokemon.sprites) return;
     const modal = document.querySelector(".modal");

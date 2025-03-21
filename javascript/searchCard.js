@@ -5,15 +5,21 @@ function validateSearch() {
     const loadMoreButton = document.getElementById("loadMoreButton");
     const query = searchInput.value.trim().toLowerCase();
     document.getElementById("searchButton").disabled = query.length < 3;
+    if (query.length === 0) {
+        searchWarning.style.display = "none";
+        resetToHome();
+        return;
+    }
     if (query.length < 3) {
         searchWarning.style.display = "block";
         closeSearchButton.style.display = "none";
         loadMoreButton.style.display = "block";
-    } else {
-        searchWarning.style.display = "none";
-        closeSearchButton.style.display = "block";
-        loadMoreButton.style.display = "none";
+        return;
     }
+    searchWarning.style.display = "none";
+    closeSearchButton.style.display = "block";
+    loadMoreButton.style.display = "none";
+    filterLoadedPokemons(query);
 }
 
 
@@ -31,14 +37,17 @@ async function searchPokemon() {
     }
 
 
-async function filterPokemonImages(query) {
-    const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=1000"); // Holt alle Pokémon-Namen
-    const data = await response.json();
-    const allPokemons = data.results;
-    
-    const filteredPokemons = allPokemons.filter(pokemon => pokemon.name.includes(query));
-    
-    displayFilteredPokemonImages(filteredPokemons);
+function filterLoadedPokemons(query) {
+    const cardContainer = document.getElementById("cardContainer");
+    const filtered = loadedPokemons.filter(pokemon =>
+        pokemon.name.toLowerCase().includes(query)
+    );
+    cardContainer.innerHTML = "";
+    if (filtered.length === 0) {
+        cardContainer.innerHTML = `<p style="text-align: center; padding: 20px;">Kein Pokémon gefunden.</p>`;
+        return;
+    }
+    filtered.forEach(pokemon => renderPokemonCard(pokemon));
 }
 
 

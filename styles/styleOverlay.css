@@ -95,7 +95,14 @@
     color: white;
     font-size: 1.5rem;
     z-index: 9999;
-    display: none;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.loading-screen.active {
+    visibility: visible;
+    opacity: 1;
 }
 
 .spinner {
@@ -106,6 +113,7 @@
     border-radius: 50%;
     animation: spin 1s linear infinite;
     margin-bottom: 15px;
+  
 }
 
 @keyframes spin {
@@ -119,5 +127,76 @@
 }
 
 .loading-content {
-    text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        flex-direction: column;
+}
+
+@media (max-width: 768px) {
+    .modal {
+        width: 90%;
+        max-width: 90%;
+        padding: 10px;
+    }
+
+    .modal img {
+        max-width: 150px;
+    }
+
+    .modal-arrow {
+        font-size: 20px;
+        padding: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal {
+        width: 95%;
+        max-width: 95%;
+        padding: 8px;
+    }
+
+    .modal img {
+        max-width: 120px;
+    }
+
+    .modal-arrow {
+        font-size: 18px;
+        padding: 6px;
+    }
+    .search-container{
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 320px) {
+    .modal {
+        width: 100%;
+        max-width: 100%;
+        padding: 6px;
+    }
+
+    .modal img {
+        max-width: 100px;
+    }
+
+    .modal-arrow {
+        font-size: 16px;
+        padding: 5px;
+    }
+
+    .modal h2 {
+        font-size: 18px;
+    }
+
+    .modal p {
+        font-size: 12px;
+    }
+
+    .modal button {
+        font-size: 14px;
+        padding: 6px 10px;
+    }
 }
