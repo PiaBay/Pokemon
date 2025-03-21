@@ -19,10 +19,11 @@
         <h1>Pokédex</h1>
         <div class="search-container">
             <input type="text" id="searchInput" placeholder="Search Pokémon..." oninput="validateSearch()">
-            <p id="searchWarning" class="search-warning">Mindestens 3 Buchstaben eingeben!</p>
-            <div id="suggestions" class="suggestions-box"></div>
             <button id="searchButton" onclick="searchPokemon()" disabled>Search</button>
         </div>
+        <div>
+        <p id="searchWarning" class="search-warning">Mindestens 3 Buchstaben eingeben!</p>
+        </div>  
     </header>
     
     <div class="card-container" id="cardContainer"></div>
